@@ -1,0 +1,148 @@
+////
+///   [[ PRELOAD ]]
+//
+//
+@import "/preload/reset/reset.less";
+
+
+
+////
+///   [[ UNIVERSAL CLASSES ]]
+//
+// --------------------------------
+
+// ============================
+// @clearfixes
+// ============================
+.clearfix,
+.cf,
+.box
+{
+    zoom:1;
+    &:before, &:after{ content:""; display:table; }
+    &:after{ clear: both; }
+}
+
+
+
+
+////
+///   [[ TRANSITION PROPERTIES ]]
+//
+//
+// ============================
+// .25s ease-out
+// ============================
+a,
+.cta,
+.cta *,
+i
+{
+    -webkit-transition: 0.25s ease-out;
+    -moz-transition: 0.25s ease-out;
+    -o-transition: 0.25s ease-out;
+    transition: 0.25s ease-out;
+    -webkit-backface-visibility: hidden;
+}
+
+
+
+////
+///   [[ UNIVERSAL TAGS ]]
+//
+//
+// ============================
+// EVERY TAG
+// DEFAULT TO BORDER BOX
+// ============================
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+// ============================
+// @body
+// ============================
+body {
+    background: #F9F8F8;
+    font-family: helveticaneue;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+// ============================
+// @ul > li
+// ============================
+ul {
+    margin: 0;
+    padding: 0;
+    display: block;
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: block;
+    }
+}
+
+
+// ============================
+// @a
+// ============================
+a {
+    color: #E45E53;
+    text-decoration: none;
+}
+a:link {
+    color: #E45E53;
+}
+a:visited{
+    color: #E15F4F;
+}
+a:hover {
+    opacity: .6 !important;
+}
+
+
+// ============================
+// @input
+// ============================
+input {
+
+}
+
+
+// ============================
+// @section
+// ============================
+section {
+    width: 100%;
+    clear: both;
+
+    // set content width
+    .box {
+        max-width: 798px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+
+
+////
+///   [[ ADD RESPONSIVE RULES ]]
+//
+//
+@import "/breakpoints/320.less"; // defaults to mobile
+@import "/breakpoints/480.less";
+@import "/breakpoints/640.less";
+@import "/breakpoints/768.less";
+@import "/breakpoints/1024.less";
+@import "/breakpoints/1440.less";

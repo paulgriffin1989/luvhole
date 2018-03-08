@@ -1,0 +1,243 @@
+/* =============================================
+////////////////////////////////////////////////
+//
+// README OR DIE
+//
+//
+================================================
+
+app.less - [[[[ TABLE OF CONTENTS ]]]]
+
+  [[ place the following in app.less file... ]]
+  -----------------------------------
+  !!!!! DONT PUT ANYTHING ELSE IN APP.lESS EXCEPT
+
+    1. preload less files such as _src/less/preload/reset/reset.less
+    2. tag specific default styling rules
+    3. universal classes
+    4. additional @import less mobile breakpoint rules
+
+        responsive setup files are found in _src/less/breakpoints
+        ---------------------------------------------------------------
+        320.less     |  no media query is set in this file,
+                        site should be coded mobile first.
+        480.less     |  @media only screen and (min-width: 480px) { }
+        640.less     |  @media only screen and (min-width: 640px) { }
+        768.less     |  @media only screen and (min-width: 768px) { }
+        1024.less    |  @media only screen and (min-width: 1024px) { }
+        1440.less    |  @media only screen and (min-width: 1440px) { }
+
+  [[[ Markup nomenclature guidelines and strategy ]]]
+
+
+  [scaffolding]
+    1. Look at the design and break it down by pages and sections.
+    2. create repeated elements
+    2. Scaffold out your css - mobile first(320.less)
+
+    320.less
+    ------------
+
+    // elements
+    .repeated_element {
+      // any design element that is repeated on multiple pages
+    }
+
+
+    // pages - these are body class names
+    .page-name {
+
+      section@unique_name {
+
+          .box {
+            // .box expections
+            // otherwise, .box should take on generalize rule found in
+            // app.less under universal classes
+          }
+
+          #unique_element {
+            // rules for one time elements
+          }
+
+          // over ride repeated element
+          .repeated_element {
+
+          }
+      }
+
+    }
+
+
+  [section]
+  the section is a horizontal defined area.
+  most designs are broken into horizonal sections.
+
+  Here is the hierarchal div relationship in selector representation...
+
+    -----------------------------
+    section#unique_name > div.box
+    -----------------------------
+
+    which means...
+
+    ---------------------------
+    <section id="unique_name">
+      <div class="box">
+
+      </div>
+    </section>
+    ---------------------------
+
+    <section>
+
+      - use the id in a semantic manner.
+      - if the design is about cars. call it that.
+      - example ::
+          <section id="cars"></section>
+      - sections should have widths set to 100%;
+      - this anticiaptes designs that have full width backgrounds across the viewport
+
+      section {
+        width: 100%;
+      }
+
+
+    .box (optional)
+
+      - use this div to contrain the content elements of a section.
+      - most designs have section that has content that is centered
+      - set the width to 100%
+      - but also set the max-width to a maximal value to contrain it.
+      - this allows for easy minimal responsive css, without have to write more rules
+
+      .box {
+        max-width: 1080px;
+        margin: 0 auto;
+        display: block;
+      }
+
+      ** if you need to write an excpetion for a particular .box, use the direct
+      descendant selector '>' -- there is no need to give .box a unique id
+
+      #cars {
+        > .box {
+          max-width: 940px;
+        }
+      }
+
+      **  dealing with markup inside the .box
+
+          If you have content portion of your section that has two columns,
+          create a semenamtic #id for each one only if its a unique design element.
+          otherwise use a class name if it's repeated somewhere else
+
+            section#id > div.box > ( #name + .content_element)
+
+            section#aboutus > div.box > ( #copy + .cta)
+
+          Designers will create a 'section' and will ask the following
+
+          [SECTION QUESTIONS]
+          What is the message/purpose of this section?
+            - get the user to act
+            - get the user to understand information
+          What do we want the users to do?
+            - understand information
+            - act
+
+
+
+      **  Any repeatable portion of the design is an 'element'
+          they are reused in design to reinforce or re-engage
+
+          There are 3 elements to be concerened with...
+
+          1. User Interface Elements
+          2. Content Elements
+          3. Call to Action Elements
+
+
+  [Handling Grids]
+
+    The grid should be a flat structure on the element level
+    with the individual div elemetns set to a percetange
+
+    so a 3 column grid with 9 elements should be...
+
+      <div id='name'>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+         <div class="item"></div>
+      </div>
+
+    vs...
+
+    <div id='name'>
+      <div class="col">
+       <div class="item"></div>
+       <div class="item"></div>
+       <div class="item"></div>
+      </div>
+    <div class="col">
+     <div class="item"></div>
+     <div class="item"></div>
+     <div class="item"></div>
+    </div>
+    <div class="col">
+     <div class="item"></div>
+     <div class="item"></div>
+     <div class="item"></div>
+    </div>
+
+    ?? WHY
+
+      Because .... it makes it easier for a responsive single column transition
+
+      320.less
+      --------
+      div#cards > .item
+        width: 100%;
+      }
+
+      768.less
+      --------
+      div#cards > .item {
+        width: 33.33333%
+        float: left;
+      }
+
+    ** NOTE
+
+      <div id='name'>
+         <div class="item"></div>
+      </div>
+
+      - use a semantic id name, if the design had a listing of profiles...then..
+
+          <div id='profiles'>
+             <div class="item"></div>
+          </div>
+
+      - keep the .item, and if you need target the item, use the direct descendant
+        selector
+
+        #profiles {
+          > .item {
+
+          }
+        }
+
+        #cards {
+          > .item {
+
+          }
+        }
+
+///////////////////////////////////////////// */
